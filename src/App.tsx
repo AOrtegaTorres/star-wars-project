@@ -8,11 +8,13 @@ function App() {
 	const [showText, setShowText] = useState<boolean>(false);
 
 	useEffect(() => {
-		setTimeout(() => setShowText(true), 5500);
+		const timer = setTimeout(() => setShowText(true), 5500);
+		return () => clearTimeout(timer);
 	}, []);
 
 	useEffect(() => {
-		setTimeout(() => navigate("characters"), 14000);
+		const timer = setTimeout(() => navigate("characters"), 60000);
+		return () => clearTimeout(timer);
 	}, []);
 
 	return (

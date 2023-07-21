@@ -21,7 +21,7 @@ root.render(
 			<Header navOptions={paths} />
 			<Routes>
 				<Route path="/" Component={App} />
-				<Route path="/characters" Component={Characteres} />
+				<Route path="/characters/:page?" Component={Characteres} />
 			</Routes>
 		</BrowserRouter>
 	</Provider>,

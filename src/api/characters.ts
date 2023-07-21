@@ -17,7 +17,11 @@ export const charactersApi = createApi({
 		getAllCharacters: builder.query<Response, number | void>({
 			query: (page = 1) => `people/?page=${page}`,
 		}),
+		getCharacterById: builder.query<Character, void>({
+			query: (id) => `people/${id}`,
+		}),
 	}),
 });
 
-export const { useGetAllCharactersQuery } = charactersApi;
+export const { useGetAllCharactersQuery, useGetCharacterByIdQuery } =
+	charactersApi;

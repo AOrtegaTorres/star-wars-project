@@ -12,7 +12,10 @@ interface Props {
 const Header = ({ navOptions }: Props) => {
 	const location = useLocation();
 	return (
-		<header className="bg-transparent text-yellow-300 z-50 sticky top-0">
+		<header
+			className="bg-transparent text-yellow-300 z-50 sticky top-0"
+			data-testid="header"
+		>
 			<nav className="bg-gray-800 mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
 				<div className="hidden sm:ml-6 sm:block">
 					<div className="flex space-x-4">
