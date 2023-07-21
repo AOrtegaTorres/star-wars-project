@@ -1,16 +1,12 @@
 import { useState } from "react";
-import {
-	useGetAllCharactersQuery,
-	useSearchCharacterQuery,
-} from "../../api/characters";
+import { useGetAllCharactersQuery } from "../../api/characters";
 import Cards from "../../components/Cards/Cards";
 import { getPage } from "../../utils";
 
 const Characteres = () => {
 	const [page, setPage] = useState<number>(1);
 	const [search, setSearch] = useState<string>("");
-	const { data, isLoading } = useGetAllCharactersQuery(page);
-	const { data: character } = useSearchCharacterQuery(search);
+	const { data, isLoading } = useGetAllCharactersQuery({ page, name: search });
 
 	const changePage = (url: string | null) => {
 		if (url) {
@@ -21,6 +17,9 @@ const Characteres = () => {
 
 	const onSearchCharacter = (event: { target: HTMLInputElement }) => {
 		setSearch((event.target as HTMLInputElement).value);
+		if (page > 1) {
+			setPage(1);
+		}
 	};
 
 	return (
@@ -55,20 +54,7 @@ const Characteres = () => {
 			<div className="grid grid-cols-4 gap-4">
 				{data?.results.length &&
 					!isLoading &&
-					!search &&
 					data?.results.map((item) => {
-						const { gender, hair_color, height } = item;
-						return (
-							<Cards
-								title={item.name}
-								key={item.name}
-								content={item.birth_year}
-								list={[gender, hair_color, height]}
-							/>
-						);
-					})}
-				{search &&
-					character?.results.map((item) => {
 						const { gender, hair_color, height } = item;
 						return (
 							<Cards

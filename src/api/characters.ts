@@ -14,20 +14,19 @@ export const charactersApi = createApi({
 	reducerPath: "charactersApi",
 	baseQuery: fetchBaseQuery({ baseUrl }),
 	endpoints: (builder) => ({
-		getAllCharacters: builder.query<Response, number | void>({
-			query: (page = 1) => `people/?page=${page}`,
-		}),
+		getAllCharacters: builder.query<Response, { page?: number; name?: string }>(
+			{
+				query: (args) => {
+					const { page, name } = args;
+					return `people/?page=${page}&search=${name}`;
+				},
+			},
+		),
 		getCharacterById: builder.query<Character, void>({
 			query: (id) => `people/${id}`,
-		}),
-		searchCharacter: builder.query<Response, string>({
-			query: (name) => `people/?search=${name}`,
 		}),
 	}),
 });
 
-export const {
-	useGetAllCharactersQuery,
-	useGetCharacterByIdQuery,
-	useSearchCharacterQuery,
-} = charactersApi;
+export const { useGetAllCharactersQuery, useGetCharacterByIdQuery } =
+	charactersApi;
