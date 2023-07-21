@@ -1,17 +1,38 @@
-* {
-  background-color: black;
-}
-.App {
-  display: grid;
-  height: 100vh;
-  place-content: center;
-}
-
 .App-logo {
-  pointer-events: none;
   animation: fadeIn 5s linear;
+  width: 900px;
+  margin-top: 100px;
 }
 
+.fade {
+  position: relative;
+  width: 100%;
+  min-height: 60vh;
+  top: -25px;
+  background-image: linear-gradient(0deg, transparent, black 75%);
+  z-index: 1;
+}
+.container-sw {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 800px;
+  color: #feda4a;
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-size: 500%;
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: justify;
+}
+
+.swanimation {
+  position: relative;
+  top: 99999px;
+  transform-origin: 50% 100%;
+  animation: crawl 70s linear;
+}
 
 @keyframes fadeIn {
   from {
@@ -19,5 +40,17 @@
   }
   to {
     transform: scale(1);
+  }
+}
+
+@keyframes crawl {
+	0% {
+    top: -100px;
+    transform: rotateX(20deg)  translateZ(0);
+  }
+	100% { 
+    top: -5000px;
+    transform: rotateX(25deg) translateZ(-2500px);
+    display: none;
   }
 }
